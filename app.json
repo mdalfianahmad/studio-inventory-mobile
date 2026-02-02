@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "studio_inventory_mobile",
-    "slug": "studio_inventory_mobile",
+    "name": "Studio Inventory",
+    "slug": "studio-inventory",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,17 +13,59 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.studioinventory.app",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Allow Studio Inventory to access your photos to upload equipment and transaction images.",
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": [
+              "studio-inventory"
+            ]
+          }
+        ]
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.studioinventory.app",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "studio-inventory",
+              "host": "auth",
+              "pathPrefix": "/callback"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ]
     },
+    "scheme": "studio-inventory",
     "web": {
-      "favicon": "./assets/favicon.png"
-    }
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-apple-authentication",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Studio Inventory to access your camera to scan QR codes and barcodes."
+        }
+      ],
+      "expo-font"
+    ]
   }
 }
